@@ -59,17 +59,17 @@ public class Tallyer {
         // TODO: Implement this method
         Map<String, Integer> total = new HashMap<>();
 
-        for(String topic:topics)
+        for(String topic:topics) //assigning topic as key
         {
-            if (!total.containsKey(topic)) //if the word isn't in there
+            if (!total.containsKey(topic)) //if the total isn't in there
             {
-            total.put(topic, 1); //put the word and assign it value 1
+            total.put(topic, 1); //put the total and assign it value 1
             } 
             else 
             {
                  int currentCount = total.get(topic); // temporary counter 
                  total.put(topic, currentCount + 1); //if it does
-                 //contain word add 1 which turns integer to 2
+                 //contain total add 1 which turns integer to 2
              }
         }
         return total; //
@@ -90,10 +90,46 @@ public class Tallyer {
     public static Map<String, Integer> tallyTopicsFiltered(List<String> ids, List<String> topics) {
       // WAVE 2
       // TODO: Implement this method 
-    
+        Map<String, Integer> votes = new HashMap<>();
+        Map<String, Integer> total = new HashMap<>();
 
+        for(String ID:ids) //assigning key as ID 
+        {
+           if (!votes.containsKey(votes)) //if the votes isn't in there
+            {
+                votes.put(ID, 1); //put the votes and assign it value 1
+                //System.out.println(votes);
+            } 
+            else 
+            {
+                 int currentCount = votes.get(ID); // temporary counter 
+                 votes.put(ID, currentCount + 1); //if it does
+                 //contain word add 1 which turns integer to 2
+             }
 
-      return null; 
+             
+        }
+
+        for(int i =0; i<topics.size(); i++)
+        {
+            if(votes.get(ids.get(i)) == 2)
+            {
+                if(!total.containsKey(topics.get(i)))
+                {
+                    total.put(topics.get(i), 1);
+                    System.out.println(total);
+                }
+                else 
+                {
+                    int currentCount = total.get(topics.get(i));
+                    int updatedCount = currentCount + 1;
+                    total.put(topics.get(i), updatedCount);
+                    System.out.println(total);
+                }
+            }
+        }
+
+      return total; 
   }
 }
 
