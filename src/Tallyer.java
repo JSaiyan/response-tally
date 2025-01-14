@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.HashMap;
 
 /**
  * The Tallyer class provides functionality for reading ID and topic pairs from user input,
@@ -32,6 +33,9 @@ public class Tallyer {
         
         // Wave 1
         Map<String, Integer> topicCounts = tallyTopics(topics);
+        //topicCounts.put(1 , lists);
+
+
         System.out.println("Here are how many times each topic appears (unfiltered):");
         System.out.println(topicCounts);
 
@@ -49,11 +53,26 @@ public class Tallyer {
      * @param topics a list of strings representing the topics to be tallied
      * @return a map containing topics as keys and their occurrence counts as values
      */
-    public static Map<String, Integer> tallyTopics(List<String> topics) {
+    public static Map<String, Integer> tallyTopics(List<String> topics) 
+    {
         // WAVE 1
         // TODO: Implement this method
+        Map<String, Integer> total = new HashMap<>();
 
-        return null;
+        for(String topic:topics)
+        {
+            if (!total.containsKey(topic)) //if the word isn't in there
+            {
+            total.put(topic, 1); //put the word and assign it value 1
+            } 
+            else 
+            {
+                 int currentCount = total.get(topic); // temporary counter 
+                 total.put(topic, currentCount + 1); //if it does
+                 //contain word add 1 which turns integer to 2
+             }
+        }
+        return total; //
     }
 
     /**
@@ -70,8 +89,14 @@ public class Tallyer {
      */
     public static Map<String, Integer> tallyTopicsFiltered(List<String> ids, List<String> topics) {
       // WAVE 2
-      // TODO: Implement this method
+      // TODO: Implement this method 
+    
 
-      return null;
+
+      return null; 
   }
 }
+
+
+// java -cp src Tallyer < responses.txt  // when you run this it is telling the code to read the responses.txt
+// javac src/Tallyer.java // compile code default
